@@ -1,4 +1,5 @@
 #!/bin/bash
+cd /home/ec2-user
 echo "start"
 echo "[" > monitoring-data.json
 count=0
@@ -21,4 +22,5 @@ do
     ((count++))
 done
 echo "]" >> monitoring-data.json
+aws s3 cp monitoring-data.json s3://cgn-aws-22-2-neuefische-website-1234/
 echo "done"
