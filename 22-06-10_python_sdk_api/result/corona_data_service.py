@@ -1,14 +1,19 @@
+"""
+    This script calulates the newest corona data
+"""
 import json
 from s3_utils import upload_to_s3
 from corona_api_service import fetch_corona_data
 
-def determine_corona_status(corona_data):
-    latest_item = corona_data[-1]
-    active = corona_data[-1]["Cases"] - corona_data[-14]["Cases"]
-    active_before_seve_days = corona_data[-7]["Cases"] - \
-        corona_data[-21]["Cases"]
+def determine_corona_status(corona_data_input):
+    """
+        determine the status of corona data from input
+    """
+    latest_item = corona_data_input[-1]
+    active = corona_data_input[-1]["Cases"] - corona_data_input[-14]["Cases"]
+    active_before_seve_days = corona_data_input[-7]["Cases"] - corona_data_input[-21]["Cases"]
     trend = "UP" if active > active_before_seve_days else "DOWN"
-    lockdown = corona_data[-1]["Cases"] - corona_data[-7]["Cases"] > 10000
+    lockdown = corona_data_input[-1]["Cases"] - corona_data_input[-7]["Cases"] > 10000
     return {
         "cases": latest_item["Cases"],
         "active": active,
@@ -18,7 +23,10 @@ def determine_corona_status(corona_data):
 
 
 def save_status(status, filename):
-    with open(filename, "w") as file:
+    """
+       save status to file
+    """
+    with open(filename, "w", encoding= "UTF-8") as file:
         json.dump(status, file)
 
 
