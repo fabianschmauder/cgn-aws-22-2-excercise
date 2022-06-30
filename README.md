@@ -6,3 +6,4 @@
 - [Friday 10/06/22 - Python SDK Api](22-06-10_python_sdk_api/README.md)
 - [Friday 17/06/22 - Own Api EC2](22-06-17_python_api_ec2/README.md)
 - [Friday 24/06/22 - Lambda Function](22-06-17_lambda/README.md)
+- [Friday 01/07/22 - Dynamo DB](22-07-01_dynamo_db/README.md)
